@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "id": "wireless-headphones",
+      "name": "Wireless Headphones",
+      "price": 7999,
+      "description": "Premium over-ear wireless headphones with active noise cancellation and 30-hour battery life.",
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800"
+    },
+    {
+      "id": "mechanical-keyboard",
+      "name": "Mechanical Keyboard",
+      "price": 12999,
+      "description": "RGB backlit mechanical keyboard with hot-swappable switches and aluminum frame.",
+      "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=800"
+    },
+    {
+      "id": "4k-monitor",
+      "name": "27\" 4K Monitor",
+      "price": 34999,
+      "description": "Ultra-sharp 27-inch 4K IPS display with USB-C connectivity and adjustable stand.",
+      "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800"
+    },
+    {
+      "id": "wireless-mouse",
+      "name": "Wireless Mouse",
+      "price": 4999,
+      "description": "Ergonomic wireless mouse with 16000 DPI sensor and programmable buttons.",
+      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800"
+    }
+  ],
+  "orders": [
+    {
+      "stripeSessionId": "cs_test_a1OxtV8PmoU6F7j4nG0E9KWoSK5vKrRt6kIRScW1LNYvWEoGvqMb6YcQCS",
+      "customerEmail": "Sanjay.s.u@avasoft.com",
+      "customerName": "Sanjay S",
+      "shippingAddress": {
+        "address": "Sample data pls ignore",
+        "apartment": "",
+        "city": "Chennai",
+        "state": "TN",
+        "zip": "603103",
+        "country": "US"
+      },
+      "items": [
+        {
+          "name": "Mechanical Keyboard",
+          "price": 12999,
+          "quantity": 1
+        }
+      ],
+      "total": 12999,
+      "id": "ORD-MMW1MVZC",
+      "status": "pending",
+      "createdAt": "2026-03-18T12:54:46.632Z"
+    }
+  ]
+}
