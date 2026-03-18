@@ -2,7 +2,9 @@ import fs from "fs";
 import path from "path";
 import type { Product } from "./products";
 
-const DB_PATH = path.join(process.cwd(), "data", "store.json");
+// On Vercel, the project root is read-only. Use /tmp for writes.
+const SOURCE_PATH = path.join(process.cwd(), "data", "store.json");
+const TMP_PATH = "/tmp/store.json";
 
 export interface OrderItem {
   name: string;
@@ -34,13 +36,31 @@ interface StoreData {
   orders: Order[];
 }
 
+function getDbPath(): string {
+  // If /tmp copy exists, use it (Vercel runtime with prior writes)
+  if (fs.existsSync(TMP_PATH)) {
+    return TMP_PATH;
+  }
+  return SOURCE_PATH;
+}
+
 function readDb(): StoreData {
-  const raw = fs.readFileSync(DB_PATH, "utf-8");
-  return JSON.parse(raw);
+  try {
+    const raw = fs.readFileSync(getDbPath(), "utf-8");
+    return JSON.parse(raw);
+  } catch {
+    return { products: [], orders: [] };
+  }
 }
 
 function writeDb(data: StoreData): void {
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), "utf-8");
+  const json = JSON.stringify(data, null, 2);
+  // Try writing to source first (local dev), fall back to /tmp (Vercel)
+  try {
+    fs.writeFileSync(SOURCE_PATH, json, "utf-8");
+  } catch {
+    fs.writeFileSync(TMP_PATH, json, "utf-8");
+  }
 }
 
 // Products

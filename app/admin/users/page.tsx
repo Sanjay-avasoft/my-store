@@ -1,5 +1,7 @@
 import { getOrders } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 interface CustomerSummary {
   email: string;
   name: string;

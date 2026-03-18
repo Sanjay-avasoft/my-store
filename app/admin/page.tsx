@@ -2,6 +2,8 @@ import { getProducts } from "@/lib/db";
 import { getOrders } from "@/lib/db";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default function AdminDashboard() {
   const products = getProducts();
   const orders = getOrders();
