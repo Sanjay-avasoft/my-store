@@ -2,7 +2,9 @@
 
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!);
+}
 
 interface CheckoutItem {
   name: string;
@@ -30,7 +32,7 @@ export async function createCheckoutSession(
 ) {
   const baseUrl = origin || process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     ui_mode: "embedded",
     customer_email: shipping.email,
     line_items: items.map((item) => ({
@@ -62,7 +64,7 @@ export async function createCheckoutSession(
 }
 
 export async function getCheckoutSession(sessionId: string) {
-  const session = await stripe.checkout.sessions.retrieve(sessionId, {
+  const session = await getStripe().checkout.sessions.retrieve(sessionId, {
     expand: ["line_items"],
   });
 
